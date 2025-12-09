@@ -21,6 +21,7 @@ import ghidra.app.util.bin.ByteProvider;
 import ghidra.app.util.importer.MessageLog;
 import ghidra.app.util.opinion.AbstractLibrarySupportLoader;
 import ghidra.app.util.opinion.LoadSpec;
+import ghidra.app.util.opinion.Loader.ImporterSettings;
 import ghidra.framework.model.DomainObject;
 import ghidra.program.model.lang.LanguageCompilerSpecPair;
 import ghidra.program.model.listing.Program;
@@ -50,8 +51,13 @@ public class XEXLoaderWVLoader extends AbstractLibrarySupportLoader {
 	}
 
 	@Override
+	protected void load(Program program, ImporterSettings settings) throws CancelledException, IOException {
+		this.load(settings.provider(), settings.loadSpec(), settings.options(), program, settings.monitor(), settings.log());		
+	}	
+	
+	
 	protected void load(ByteProvider provider, LoadSpec loadSpec, List<Option> options, Program program,
-			TaskMonitor monitor, MessageLog log) throws CancelledException, IOException {
+			TaskMonitor monitor, MessageLog log) throws IOException {
 		try {
 			Log.info("XEX Loader: Trying to load as retail...");
 			LoadXEX(provider, loadSpec, options, program, monitor, log, false);
@@ -200,8 +206,7 @@ public class XEXLoaderWVLoader extends AbstractLibrarySupportLoader {
 	}
 
 	@Override
-	public List<Option> getDefaultOptions(ByteProvider provider, LoadSpec loadSpec, DomainObject domainObject,
-			boolean loadIntoProgram) {
+	public List<Option> getDefaultOptions(ByteProvider provider, LoadSpec loadSpec,	DomainObject domainObject, boolean loadIntoProgram, boolean mirrorFsLayout) {
 		List<Option> list = new ArrayList<Option>();
 		list.add(new Option("Process .pdata", true));
 		list.add(new Option("Load PDB File", false));
