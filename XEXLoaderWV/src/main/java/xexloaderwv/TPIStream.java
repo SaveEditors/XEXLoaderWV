@@ -486,7 +486,7 @@ public class TPIStream {
 			if(rec.typeID == en.field)
 			{
 				TypeRecord.LR_FieldList fieldList = (TypeRecord.LR_FieldList)rec.record;
-				EnumDataType newEnum = new EnumDataType(en.name, 8);
+				EnumDataType newEnum = new EnumDataType(en.name, ResolveEnumStorageSize(en));
 				for(TypeRecord.MemberRecord m : fieldList.records)
 				{
 					TypeRecord.MR_Enumerate entry = (TypeRecord.MR_Enumerate)m;
@@ -496,6 +496,24 @@ public class TPIStream {
 				return true;
 			}
 		return false;
+	}
+
+	private int ResolveEnumStorageSize(TypeRecord.LR_Enum en)
+	{
+		int primitiveSize = CodeViewTypeInfo.getPrimitiveStorageSize(en.utype);
+		if(primitiveSize > 0)
+			return primitiveSize;
+
+		try
+		{
+			DataType dataType = GetDataTypeByIndex(en.utype);
+			if(dataType != null && dataType.getLength() > 0)
+				return dataType.getLength();
+		}
+		catch (Exception ex)
+		{
+		}
+		return 8;
 	}
 	
 	public LeafRecordKind GetTypeKind(long index)
