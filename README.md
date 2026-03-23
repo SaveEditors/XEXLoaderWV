@@ -1,14 +1,25 @@
 # X360 XEX Loader for Ghidra by Warranty Voider
 
-this is a loader module for ghidra for XBox360 XEX files
+This is a Ghidra loader extension for Xbox 360 XEX files.
 
-- supports PDB/XDB files
-  - In loader import page, click Advanced.
-  - Tick `Load PDB File` + `Use experimental PDB loader` and untick `Process .pdata`
-  - Select `MSDIA` parser
-- supports XEXP delta patches
+## SaveEditors Fork Updates
 
-requires min. JDK 17
+This fork carries maintained fixes and publishes ready-to-install release zips.
+
+- Fixed PDB enum imports so enums use their actual underlying storage size instead of always importing as 8-byte enums.
+- Fixed PDB root stream page counting so PDBs with sub-page root directories parse correctly.
+- Release zips for the fork are published on the [Releases](https://github.com/SaveEditors/XEXLoaderWV/releases) page.
+- The upstream patch was submitted as [zeroKilo/XEXLoaderWV#33](https://github.com/zeroKilo/XEXLoaderWV/pull/33).
+
+## Features
+
+- Supports PDB/XDB files.
+  - In the loader import page, click Advanced.
+  - Tick `Load PDB File` and `Use experimental PDB loader`, then untick `Process .pdata`.
+  - Select `MSDIA` parser.
+- Supports XEXP delta patches.
+
+Requires JDK 17 or newer.
 
 [![Alt text](https://img.youtube.com/vi/coGz0f7hHTM/0.jpg)](https://www.youtube.com/watch?v=coGz0f7hHTM)
 
