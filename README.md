@@ -2,6 +2,11 @@
 
 this is a loader module for ghidra for XBox360 XEX files
 
+- SaveEditors fork release: `13.0.0` (`Bug fixes`)
+- fork fixes included in this release:
+  - PDB enum sizing and root-stream parsing fixes
+  - CodeView `LF_ARRAY` byte-length handling fixes
+  - `.pdata` promotion from labels to real Ghidra functions
 - supports PDB/XDB files
   - In loader import page, click Advanced.
   - Tick `Load PDB File` + `Use experimental PDB loader` and untick `Process .pdata`
