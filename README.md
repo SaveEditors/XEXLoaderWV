@@ -22,23 +22,38 @@ This fork carries maintained fixes and publishes ready-to-install release zips.
   - Select `MSDIA` parser.
 - Supports XEXP delta patches.
 
-Requires JDK 17 or newer.
+Requires the minimum Java version required by your Ghidra install.
 
 [![Alt text](https://img.youtube.com/vi/coGz0f7hHTM/0.jpg)](https://www.youtube.com/watch?v=coGz0f7hHTM)
 
 <!-- this video is outdated -->
 <!-- [![Alt text](https://img.youtube.com/vi/dBoofGgraKM/0.jpg)](https://www.youtube.com/watch?v=dBoofGgraKM) -->
 
-## Build problem with gradle wrapper
+## Build
 
-EDIT:2025.04.05
+This extension is built using the Gradle support files that ship with Ghidra. The required Java and Gradle versions come from:
 
-it seems you have to update
+```text
+<GHIDRA_INSTALL_DIR>\Ghidra\application.properties
+```
 
-```(Ghidra Install Dir)\Ghidra\application.properties```
+Do not edit those values in Ghidra just to build this project. Instead, use a JDK and Gradle version that satisfy your installed Ghidra release.
 
-and upgrade the gradle version like this
+For Ghidra `12.0.4`, the current minimums are:
 
-```application.gradle.min=8.10```
+```text
+application.java.min=21
+application.gradle.min=8.5
+```
 
-if you have problems with building from source in eclipse with the gradle wrapper.
+This fork was validated against Ghidra `12.0.4`, JDK `21`, and Gradle `9.3.1`.
+
+Example:
+
+```powershell
+$env:GHIDRA_INSTALL_DIR='A:\Tools\ghidra_12.0.4_PUBLIC'
+$env:JAVA_HOME='A:\Tools\jdk-21'
+gradle buildExtension
+```
+
+If you are building from Eclipse or another IDE, make sure it uses a compatible JDK and Gradle version for the Ghidra version you are targeting.
