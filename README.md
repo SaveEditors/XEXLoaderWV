@@ -6,8 +6,11 @@ This is a Ghidra loader extension for Xbox 360 XEX files.
 
 This fork carries maintained fixes and publishes ready-to-install release zips.
 
+- SaveEditors fork release: `13.0.0` (`Bug fixes`)
 - Fixed PDB enum imports so enums use their actual underlying storage size instead of always importing as 8-byte enums.
 - Fixed PDB root stream page counting so PDBs with sub-page root directories parse correctly.
+- Fixed CodeView `LF_ARRAY` imports so byte lengths are converted into the correct element counts.
+- Fixed `.pdata` handling so imported entries become real Ghidra functions instead of label-only symbols.
 - Release zips for the fork are published on the [Releases](https://github.com/SaveEditors/XEXLoaderWV/releases) page.
 - The upstream patch was submitted as [zeroKilo/XEXLoaderWV#33](https://github.com/zeroKilo/XEXLoaderWV/pull/33).
 
